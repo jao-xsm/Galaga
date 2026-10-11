@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ck3t8kggmsw7b"]
+
+[ext_resource type="Script" uid="uid://ia6v43eir46m" path="res://scripts/bullet.gd" id="1_46jqs"]
+[ext_resource type="Texture2D" uid="uid://cc4c675x8dsr8" path="res://sprites/laserBlue01.png" id="1_mbmgk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avkt0"]
+size = Vector2(4, 26)
+
+[node name="PlayerBullet" type="Area2D" unique_id=848019657]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_46jqs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1601781714]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_mbmgk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=346792136]
+shape = SubResource("RectangleShape2D_avkt0")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
