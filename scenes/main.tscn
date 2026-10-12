@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://by2bp4lkx3nj4"]
+
+[ext_resource type="PackedScene" uid="uid://bewxrfo0fgken" path="res://scenes/player.tscn" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://kj8smgwfm7b7" path="res://scripts/pool.gd" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://ck3t8kggmsw7b" path="res://scenes/player_bullet.tscn" id="3_tbgi4"]
+
+[node name="Main" type="Node" unique_id=1191445954]
+
+[node name="Player" parent="." unique_id=1186881560 node_paths=PackedStringArray("bullet_pool") instance=ExtResource("1_sugp2")]
+position = Vector2(224, 530)
+bullet_pool = NodePath("../PlayerBulletPool")
+
+[node name="PlayerBulletPool" type="Node" parent="." unique_id=37561670]
+script = ExtResource("2_jyhfs")
+scene = ExtResource("3_tbgi4")
+pool_size = 2
