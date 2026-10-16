@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://bewxrfo0fgken" path="res://scenes/player.tscn" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://kj8smgwfm7b7" path="res://scripts/pool.gd" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://ck3t8kggmsw7b" path="res://scenes/player_bullet.tscn" id="3_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://bg66womcu5p7l" path="res://scenes/enemy.tscn" id="4_jyhfs"]
 
 [node name="Main" type="Node" unique_id=1191445954]
 
@@ -15,5 +14,3 @@ bullet_pool = NodePath("../PlayerBulletPool")
 script = ExtResource("2_jyhfs")
 scene = ExtResource("3_tbgi4")
 pool_size = 2
-
-[node name="enemy" parent="." unique_id=791999724 instance=ExtResource("4_jyhfs")]
