@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ck3t8kggmsw7b" path="res://scenes/player_bullet.tscn" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bg66womcu5p7l" path="res://scenes/enemy.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://c8bxr8wq7eyco" path="res://scenes/enemy_bullet.tscn" id="5_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://cmliouvwxhfga" path="res://sprites/playerLife1_blue.png" id="7_o6xl0"]
 
 [node name="Main" type="Node" unique_id=1191445954]
 
@@ -76,3 +77,70 @@ pool_size = 6
 script = ExtResource("2_jyhfs")
 scene = ExtResource("4_jyhfs")
 pool_size = 40
+
+[node name="spawnTimer" type="Timer" parent="." unique_id=358301158]
+one_shot = true
+
+[node name="atackTimer" type="Timer" parent="." unique_id=77204747]
+wait_time = 1.5
+
+[node name="respawnTimer" type="Timer" parent="." unique_id=1154912627]
+wait_time = 2.0
+one_shot = true
+
+[node name="HUD" type="Control" parent="." unique_id=1848875119]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="score" type="Label" parent="HUD" unique_id=407972603]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 23.0
+text = "SCORE: "
+
+[node name="kills" type="Label" parent="HUD" unique_id=1195642612]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "KILLS: "
+
+[node name="mensagem" type="Label" parent="HUD" unique_id=1364516342]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GALAGA"
+metadata/_edit_use_anchors_ = true
+
+[node name="lives" type="HBoxContainer" parent="HUD" unique_id=412595388]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="HUD/lives" unique_id=1573204783]
+layout_mode = 2
+texture = ExtResource("7_o6xl0")
+
+[node name="TextureRect2" type="TextureRect" parent="HUD/lives" unique_id=2048602650]
+layout_mode = 2
+texture = ExtResource("7_o6xl0")
