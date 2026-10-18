@@ -1,8 +1,8 @@
 extends Node
 
-# Quantidade de inimigos em cada linha da formação (igual ao Galaga)
+#quantidade de inimigos em cada linha da formação (tipo no original)
 const ROW_SIZE = [4, 8, 8, 10, 10]
-# Tipo de inimigo de cada linha: 0 = chefe, 1 = borboleta, 2 = abelha
+#tipo de inimigo de cada linha: 0 = chefe, 1 = borboleta, 2 = abelha
 const ROW_TYPE = [0, 1, 1, 2, 2]
 
 @export var enemies_to_win: int = 80
@@ -26,14 +26,14 @@ var lives: int
 var playing: bool = false
 var game_finished: bool = false
 
-var slots: Array = []          # posição de cada lugar da formação
-var slot_rows: Array = []      # linha de cada lugar
-var spawn_index: int = 0       # próximo lugar a ser preenchido
-var entrance_paths: Array = [] # caminhos de entrada (listas de pontos)
+var slots: Array = []          #posição de cada lugar da formação
+var slot_rows: Array = []      #linha de cada lugar
+var spawn_index: int = 0       #próximo lugar a ser preenchido
+var entrance_paths: Array = [] #caminhos de entrada
 
 
 func _ready() -> void:
-	# Prepara todos os inimigos da pool
+	#prepara todos os inimigos da pool
 	for enemy in enemy_pool.objects:
 		enemy.formation = formation
 		enemy.connect("killed", _on_enemy_killed)
@@ -42,12 +42,6 @@ func _ready() -> void:
 	entrance_paths.append(get_path_points($Paths/PathLeft))
 	entrance_paths.append(get_path_points($Paths/PathRight))
 	create_slots()
-
-	# Conecta os sinais pelo código (assim não depende de conectar no editor)
-	player.connect("hit", _on_player_hit)
-	spawn_timer.connect("timeout", _on_spawn_timer_timeout)
-	attack_timer.connect("timeout", _on_attack_timer_timeout)
-	respawn_timer.connect("timeout", _on_respawn_timer_timeout)
 
 	lives = initial_lives
 	update_hud()
@@ -64,17 +58,15 @@ func _process(_delta: float) -> void:
 				start_game()
 		return
 
-	# Só olha para a onda depois que todos os inimigos dela já foram gerados
 	if spawn_index >= slots.size():
 		if count_active_enemies() == 0:
 			spawn_wave()
 		elif not formation.breathing and not any_enemy_entering():
-			# Todos chegaram: a formação começa a "respirar" e os ataques começam
 			formation.breathing = true
 			attack_timer.start()
 
 
-# Lê as posições dos Marker2D filhos de um nó
+#lê as posições dos Marker2D filhos de um nó
 func get_path_points(path_node: Node) -> Array:
 	var points = []
 	for marker in path_node.get_children():
@@ -82,7 +74,7 @@ func get_path_points(path_node: Node) -> Array:
 	return points
 
 
-# Calcula a posição de cada lugar da formação, relativa ao centro dela
+#calcula a posição de cada lugar da formação, relativa ao centro dela
 func create_slots() -> void:
 	for row in range(ROW_SIZE.size()):
 		for col in range(ROW_SIZE[row]):
@@ -109,19 +101,19 @@ func spawn_wave() -> void:
 func _on_spawn_timer_timeout() -> void:
 	var enemy = enemy_pool.get_free_object()
 	if enemy == null:
-		spawn_timer.start(0.5)   # pool vazia: tenta de novo daqui a pouco
+		spawn_timer.start(0.5)   #com a pool vazia, tenta de novo daqui a pouco
 		return
 
 	var row = slot_rows[spawn_index]
-	# Linhas pares entram pela esquerda e linhas ímpares pela direita
+	#linhas pares entram pela esquerda e linhas ímpares pela direita
 	enemy.spawn(ROW_TYPE[row], slots[spawn_index], entrance_paths[row % 2])
 	spawn_index += 1
 
 	if spawn_index < slots.size():
 		if slot_rows[spawn_index] != row:
-			spawn_timer.start(1.5)    # pausa maior antes da próxima linha
+			spawn_timer.start(1.5)
 		else:
-			spawn_timer.start(0.15)   # inimigos da mesma linha entram em fila
+			spawn_timer.start(0.15)
 
 
 func count_active_enemies() -> int:
@@ -140,7 +132,6 @@ func any_enemy_entering() -> bool:
 
 
 func _on_attack_timer_timeout() -> void:
-	# Sorteia um inimigo que esteja parado na formação para atacar
 	var candidates = []
 	for enemy in enemy_pool.objects:
 		if enemy.is_in_formation():
@@ -186,7 +177,7 @@ func _on_respawn_timer_timeout() -> void:
 func update_hud() -> void:
 	score_label.text = "SCORE\n" + str(score)
 	kills_label.text = "INIMIGOS\n" + str(kills) + "/" + str(enemies_to_win)
-	# Mostra uma nave reserva para cada vida extra
+	#mostra uma nave reserva para cada vida extra
 	for i in range(lives_box.get_child_count()):
 		lives_box.get_child(i).visible = i < lives - 1
 

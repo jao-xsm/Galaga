@@ -156,3 +156,8 @@ texture = ExtResource("7_o6xl0")
 [node name="TextureRect2" type="TextureRect" parent="HUD/Lives" unique_id=2048602650]
 layout_mode = 2
 texture = ExtResource("7_o6xl0")
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
