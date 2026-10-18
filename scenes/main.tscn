@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bewxrfo0fgken" path="res://scenes/player.tscn" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://b0hrbhic5k8eg" path="res://scripts/formacao.gd" id="1_tefeu"]
+[ext_resource type="Script" uid="uid://bgw1lnvxgf50c" path="res://scripts/main.gd" id="1_tipki"]
 [ext_resource type="Script" uid="uid://kj8smgwfm7b7" path="res://scripts/pool.gd" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://ck3t8kggmsw7b" path="res://scenes/player_bullet.tscn" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bg66womcu5p7l" path="res://scenes/enemy.tscn" id="4_jyhfs"]
@@ -9,54 +10,55 @@
 [ext_resource type="Texture2D" uid="uid://cmliouvwxhfga" path="res://sprites/playerLife1_blue.png" id="7_o6xl0"]
 
 [node name="Main" type="Node" unique_id=1191445954]
+script = ExtResource("1_tipki")
 
-[node name="formacao" type="Node2D" parent="." unique_id=1002195056]
+[node name="Formation" type="Node2D" parent="." unique_id=1002195056]
 position = Vector2(224, 70)
 script = ExtResource("1_tefeu")
 distanciamneto = Vector2(36, 32)
 velocMovimentoLateral = 25.0
 distMovimentacaoFormacao = 30.0
 
-[node name="caminhos" type="Node2D" parent="." unique_id=664445244]
+[node name="Paths" type="Node2D" parent="." unique_id=664445244]
 
-[node name="caminhoEsq" type="Node2D" parent="caminhos" unique_id=1357062469]
+[node name="PathLeft" type="Node2D" parent="Paths" unique_id=1357062469]
 
-[node name="Marker2D" type="Marker2D" parent="caminhos/caminhoEsq" unique_id=881272883]
+[node name="Marker2D" type="Marker2D" parent="Paths/PathLeft" unique_id=881272883]
 position = Vector2(200, -30)
 
-[node name="Marker2D2" type="Marker2D" parent="caminhos/caminhoEsq" unique_id=1918436795]
+[node name="Marker2D2" type="Marker2D" parent="Paths/PathLeft" unique_id=1918436795]
 position = Vector2(200, 140)
 
-[node name="Marker2D3" type="Marker2D" parent="caminhos/caminhoEsq" unique_id=1444194380]
+[node name="Marker2D3" type="Marker2D" parent="Paths/PathLeft" unique_id=1444194380]
 position = Vector2(150, 280)
 
-[node name="Marker2D4" type="Marker2D" parent="caminhos/caminhoEsq" unique_id=554577237]
+[node name="Marker2D4" type="Marker2D" parent="Paths/PathLeft" unique_id=554577237]
 position = Vector2(80, 320)
 
-[node name="Marker2D5" type="Marker2D" parent="caminhos/caminhoEsq" unique_id=1992204999]
+[node name="Marker2D5" type="Marker2D" parent="Paths/PathLeft" unique_id=1992204999]
 position = Vector2(40, 260)
 
-[node name="Marker2D6" type="Marker2D" parent="caminhos/caminhoEsq" unique_id=967023544]
+[node name="Marker2D6" type="Marker2D" parent="Paths/PathLeft" unique_id=967023544]
 position = Vector2(80, 200)
 
-[node name="caminhoDir" type="Node2D" parent="caminhos" unique_id=1699444641]
+[node name="PathRight" type="Node2D" parent="Paths" unique_id=1699444641]
 
-[node name="Marker2D" type="Marker2D" parent="caminhos/caminhoDir" unique_id=394899695]
+[node name="Marker2D" type="Marker2D" parent="Paths/PathRight" unique_id=394899695]
 position = Vector2(248, -30)
 
-[node name="Marker2D2" type="Marker2D" parent="caminhos/caminhoDir" unique_id=817590147]
+[node name="Marker2D2" type="Marker2D" parent="Paths/PathRight" unique_id=817590147]
 position = Vector2(248, 140)
 
-[node name="Marker2D3" type="Marker2D" parent="caminhos/caminhoDir" unique_id=1729988589]
+[node name="Marker2D3" type="Marker2D" parent="Paths/PathRight" unique_id=1729988589]
 position = Vector2(298, 280)
 
-[node name="Marker2D4" type="Marker2D" parent="caminhos/caminhoDir" unique_id=1544283965]
+[node name="Marker2D4" type="Marker2D" parent="Paths/PathRight" unique_id=1544283965]
 position = Vector2(368, 320)
 
-[node name="Marker2D5" type="Marker2D" parent="caminhos/caminhoDir" unique_id=1531701615]
+[node name="Marker2D5" type="Marker2D" parent="Paths/PathRight" unique_id=1531701615]
 position = Vector2(408, 260)
 
-[node name="Marker2D6" type="Marker2D" parent="caminhos/caminhoDir" unique_id=1143362202]
+[node name="Marker2D6" type="Marker2D" parent="Paths/PathRight" unique_id=1143362202]
 position = Vector2(368, 200)
 
 [node name="Player" parent="." unique_id=1186881560 node_paths=PackedStringArray("bullet_pool") instance=ExtResource("1_sugp2")]
@@ -68,23 +70,23 @@ script = ExtResource("2_jyhfs")
 scene = ExtResource("3_tbgi4")
 pool_size = 2
 
-[node name="enemiBulletPool" type="Node" parent="." unique_id=1343182468]
+[node name="EnemyBulletPool" type="Node" parent="." unique_id=1343182468]
 script = ExtResource("2_jyhfs")
 scene = ExtResource("5_o6xl0")
 pool_size = 6
 
-[node name="enemyPool" type="Node" parent="." unique_id=1701454884]
+[node name="EnemyPool" type="Node" parent="." unique_id=1701454884]
 script = ExtResource("2_jyhfs")
 scene = ExtResource("4_jyhfs")
 pool_size = 40
 
-[node name="spawnTimer" type="Timer" parent="." unique_id=358301158]
+[node name="SpawnTimer" type="Timer" parent="." unique_id=358301158]
 one_shot = true
 
-[node name="atackTimer" type="Timer" parent="." unique_id=77204747]
+[node name="AttackTimer" type="Timer" parent="." unique_id=77204747]
 wait_time = 1.5
 
-[node name="respawnTimer" type="Timer" parent="." unique_id=1154912627]
+[node name="RespawnTimer" type="Timer" parent="." unique_id=1154912627]
 wait_time = 2.0
 one_shot = true
 
@@ -96,13 +98,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="score" type="Label" parent="HUD" unique_id=407972603]
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=407972603]
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 23.0
 text = "SCORE: "
 
-[node name="kills" type="Label" parent="HUD" unique_id=1195642612]
+[node name="KillsLabel" type="Label" parent="HUD" unique_id=1195642612]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -112,7 +114,7 @@ offset_bottom = 23.0
 grow_horizontal = 0
 text = "KILLS: "
 
-[node name="mensagem" type="Label" parent="HUD" unique_id=1364516342]
+[node name="MessageLabel" type="Label" parent="HUD" unique_id=1364516342]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -128,7 +130,7 @@ grow_vertical = 2
 text = "GALAGA"
 metadata/_edit_use_anchors_ = true
 
-[node name="lives" type="HBoxContainer" parent="HUD" unique_id=412595388]
+[node name="Lives" type="HBoxContainer" parent="HUD" unique_id=412595388]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -137,10 +139,10 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="HUD/lives" unique_id=1573204783]
+[node name="TextureRect" type="TextureRect" parent="HUD/Lives" unique_id=1573204783]
 layout_mode = 2
 texture = ExtResource("7_o6xl0")
 
-[node name="TextureRect2" type="TextureRect" parent="HUD/lives" unique_id=2048602650]
+[node name="TextureRect2" type="TextureRect" parent="HUD/Lives" unique_id=2048602650]
 layout_mode = 2
 texture = ExtResource("7_o6xl0")

@@ -55,7 +55,7 @@ func move_to(posicao: Vector2, delta: float) -> void:
 	var direcao = posicao - position
 	
 	if direcao.length() > 1.0:
-		rotation = direcao.angulo() - PI /2  #nimigo "olha"/fica p baixo
+		rotation = direcao.angle() - PI /2  #nimigo "olha"/fica p baixo
 		
 	position = position.move_toward(posicao, speed*delta)
 
