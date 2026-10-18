@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bewxrfo0fgken" path="res://scenes/player.tscn" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://b0hrbhic5k8eg" path="res://scripts/formacao.gd" id="1_tefeu"]
 [ext_resource type="Script" uid="uid://bgw1lnvxgf50c" path="res://scripts/main.gd" id="1_tipki"]
+[ext_resource type="Texture2D" uid="uid://bmew2y1ckbqvo" path="res://sprites/black.png" id="2_85g3d"]
 [ext_resource type="Script" uid="uid://kj8smgwfm7b7" path="res://scripts/pool.gd" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://ck3t8kggmsw7b" path="res://scenes/player_bullet.tscn" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bg66womcu5p7l" path="res://scenes/enemy.tscn" id="4_jyhfs"]
@@ -11,6 +12,15 @@
 
 [node name="Main" type="Node" unique_id=1191445954]
 script = ExtResource("1_tipki")
+
+[node name="Backgound" type="Parallax2D" parent="." unique_id=15554609]
+repeat_size = Vector2(256, 256)
+autoscroll = Vector2(0, 40)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Backgound" unique_id=1275634785]
+texture = ExtResource("2_85g3d")
+centered = false
 
 [node name="Formation" type="Node2D" parent="." unique_id=1002195056]
 position = Vector2(224, 70)

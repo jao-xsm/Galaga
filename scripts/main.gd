@@ -5,7 +5,7 @@ const ROW_SIZE = [4, 8, 8, 10, 10]
 # Tipo de inimigo de cada linha: 0 = chefe, 1 = borboleta, 2 = abelha
 const ROW_TYPE = [0, 1, 1, 2, 2]
 
-@export var enemies_to_win: int = 40
+@export var enemies_to_win: int = 80
 @export var initial_lives: int = 3
 
 @onready var formation: Node2D = $Formation
